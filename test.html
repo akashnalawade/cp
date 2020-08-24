@@ -1,0 +1,266 @@
+
+<!DOCTYPE html>
+<html style="height: 100%">
+   <head>
+       <meta charset="utf-8">
+   </head>
+   <body style="height: 100%; margin: 0">
+       	<div id="container" style="height: 100%"></div>
+
+       	<button id="submitRange">Submit</button>
+
+       	<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+       	<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts-gl/dist/echarts-gl.min.js"></script>
+       	<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts-stat/dist/ecStat.min.js"></script>
+       	<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/extension/dataTool.min.js"></script>
+       	<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/map/js/china.js"></script>
+       	<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/map/js/world.js"></script>
+ 		<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/extension/bmap.min.js"></script>
+
+ 		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+<script type="text/javascript">
+	
+	var processed_data = [
+	            [[0.44094364,11.96963353,0, 0, 0, 0, 0, 0, 0, 0, 1], 
+	            [0.362159394,12.35691498,0, 0, 0, 0, 0, 0, 0, 0.1, 0.9 ], 
+	            [0.3009933440,12.74419643,0, 0, 0, 0, 0, 0, 0, 0.2, 0.8  ],
+	            [0.25744549,13.13147789,0, 0, 0, 0, 0, 0, 0, 0.3, 0.7,],
+	            [0.23151583,13.51875934,0, 0, 0, 0, 0, 0, 0, 0.4, 0.6], 
+	            [0.223204366,13.9060408,0, 0, 0, 0, 0, 0, 0, 0.5, 0.5], 
+	            [0.232511098,14.29332225,0, 0, 0, 0, 0, 0, 0, 0.6, 0.4 ], 
+	            [0.259436024,14.6806037,0, 0, 0, 0, 0, 0, 0, 0.7, 0.3 ], 
+	            [0.303979146,15.06788516,0, 0, 0, 0, 0, 0, 0, 0.8, 0.2  ], 
+	            [0.366140464,15.45516661,0, 0, 0, 0, 0, 0, 0, 0.9, 0.1]]
+	            ];
+
+	var dom = document.getElementById("container");
+	var myChart = echarts.init(dom);
+	function load_chart(chart_data)
+	{
+
+		dom = document.getElementById("container");
+		myChart = echarts.init(dom);
+		var app = {};
+		option = null;
+		var data = chart_data;
+		option = {
+		    backgroundColor: new echarts.graphic.RadialGradient(0.3, 0.3, 0.8, [{
+		        offset: 0,
+		        color: '#f7f8fa'
+		    }, {
+		        offset: 1,
+		        color: '#cdd0d5'
+		    }]),
+		    title: {
+		        text: '1990 to 2015 Worlds GDP'
+		    },
+		    legend: {
+		        right: 10,
+		        data: ['1990', '2015']
+		    },
+		    xAxis: {
+		    	name: "Mean",
+		        splitLine: {
+		            lineStyle: {
+		                type: 'dashed'
+		            }
+		        }
+		    },
+		    yAxis: {
+		    	name: "Variance",
+		        splitLine: {
+		            lineStyle: {
+		                type: 'dashed'
+		            }
+		        },
+		        scale: true
+		    },
+
+		    tooltip: {
+		        padding: 10,
+		        backgroundColor: '#222',
+		        borderColor: '#777',
+		        borderWidth: 1,
+		        // showContent : false,
+		        formatter: function (obj) {
+		            var value = obj.value;
+		            console.log("obj");
+		            console.log(obj);
+		            return '<div style="border-bottom: 1px solid rgba(255,255,255,.3); font-size: 18px;padding-bottom: 7px;margin-bottom: 7px">'
+                            + 'Mean: ' + value[0] + '   '+ ' Variance: '+ value[1]
+                            + '</div>'
+                            +'Atlanta Falcons ：'+ value[2] +'<br>'
+							+'Baltimore Ravens ：'+ value[3] + '<br>'
+							+'Buffalo Bills ：'+ value[4] +'<br>'
+							+'Green Bay Packers ：'+ value[5] + '<br>'
+							+'New England Patriots ：'+ value[6] +'<br>'
+							+'New Orleans Saints ：'+ value[7] + '<br>'
+							+'New York Jets ：'+ value[8] +'<br>'
+							+'Pittsburgh Steelers ：'+ value[9] + '<br>'
+							+'San Francisco 49ers ：'+ value[10] +'<br>'
+		        }
+		    },
+
+		    dataZoom: [
+		        {   // This dataZoom component controls x-axis by dafault
+		            type: 'slider', // this dataZoom component is dataZoom component of slider
+		            start: 0,      // the left is located at 10%
+		            end: 70000         // the right is located at 60%
+		        },
+		        {   // This dataZoom component controls x-axis by dafault
+		            type: 'inside', // this dataZoom component is dataZoom component of inside
+		            start: 0,      // the left is located at 10%
+		            end: 70000         // the right is located at 60%
+		        },
+		        {
+		            type: 'slider',
+		            yAxisIndex: 0,
+		            start: 0,
+		            end: 85
+		        },
+		        {
+		            type: 'inside',
+		            yAxisIndex: 0,
+		            start: 0,
+		            end: 85
+		        }
+		    ],
+		    series: [{
+		        name: '0',
+		        data: data[0],
+		        type: 'scatter',
+		        symbolSize: function (data) {
+		            return 5;
+
+		        },
+		        itemStyle: {
+		            shadowBlur: 10,
+		            shadowColor: 'rgba(120, 36, 50, 0.5)',
+		            shadowOffsetY: 5,
+		            color: new echarts.graphic.RadialGradient(0.4, 0.3, 1, [{
+		                offset: 0,
+		                color: 'rgb(251, 118, 123)'
+		            }, {
+		                offset: 1,
+		                color: 'rgb(204, 46, 72)'
+		            }])
+		        }
+		    }
+		    ]
+		};;
+		if (option && typeof option === "object") {
+		    myChart.setOption(option, true);
+		}
+
+	}
+
+	load_chart(processed_data)
+
+	$('#submitRange').click(function() {
+	    var start =  Date.now();
+	    console.log("Clicked")
+	    myChart.clear();
+
+	    var l_mean ;
+	    var l_variance;
+
+	    var l_atlanta_falcons;
+		var l_baltimore_ravens;
+		var l_buffalo_bills;
+		var l_green_bay_packers;
+		var l_new_england_patriots;
+		var l_new_orleans_saints;
+		var l_new_york_jets;
+		var l_pittsburgh_steelers;
+		var l_san_francisco_49ers;
+
+		var h_mean ;
+	    var h_variance;
+
+	    var h_atlanta_falcons;
+		var h_baltimore_ravens;
+		var h_buffalo_bills;
+		var h_green_bay_packers;
+		var h_new_england_patriots;
+		var h_new_orleans_saints;
+		var h_new_york_jets;
+		var h_pittsburgh_steelers;
+		var h_san_francisco_49ers;
+
+
+		l_mean = 0.2;
+		l_variance = 1;
+	
+		l_atlanta_falcons = 0;
+		l_baltimore_ravens = 0;
+		l_buffalo_bills = 0;
+		l_green_bay_packers = 0; 
+		l_new_england_patriots = 0; 
+		l_new_orleans_saints = 0 ;
+		l_new_york_jets = 0;
+		l_pittsburgh_steelers = 0;
+		l_san_francisco_49ers = 0;
+
+
+		h_mean = 0.8;
+		h_variance = 15;
+	
+		h_atlanta_falcons =1;
+		h_baltimore_ravens = 1;
+		h_buffalo_bills = 1;
+		h_green_bay_packers = 1; 
+		h_new_england_patriots = 1; 
+		h_new_orleans_saints = 1 ;
+		h_new_york_jets = 1;
+		h_pittsburgh_steelers = 1;
+		h_san_francisco_49ers = 1;
+
+
+	    $.ajaxSetup({ cache:false });
+		$.getJSON("https://raw.githubusercontent.com/akashnalawade/statFiles/master/dataToInsert.json", function(json){
+			// console.log(json);
+			// console.log(json[0]);
+			total_records = json.length;
+			console.log(total_records);
+			var main_arr = [];
+			for(var i =0;i<total_records;i++){
+				// console.log(json[i])
+				
+				
+				if(json[i]['x'] >= l_mean && json[i]['x'] <= h_mean  && json[i]['y'] >= l_variance && json[i]['y'] <= h_variance  &&  json[i]['Atlanta Falcons'] >= l_atlanta_falcons && json[i]['Atlanta Falcons'] <= h_atlanta_falcons &&  json[i]['Baltimore Ravens'] >= l_baltimore_ravens && json[i]['Baltimore Ravens'] <= h_baltimore_ravens && json[i]['Buffalo Bills'] >= l_buffalo_bills && json[i]['Buffalo Bills'] <= h_buffalo_bills &&  json[i]['Green Bay Packers'] >= l_green_bay_packers && json[i]['Green Bay Packers'] <= h_green_bay_packers && json[i]['New England Patriots'] >= l_new_england_patriots && json[i]['New England Patriots'] <= h_new_england_patriots && json[i]['New Orleans Saints'] >= l_new_orleans_saints && json[i]['New Orleans Saints'] <= h_new_orleans_saints &&   json[i]['New York Jets'] >= l_new_york_jets && json[i]['New York Jets'] <= h_new_york_jets && json[i]['Pittsburgh Steelers'] >= l_pittsburgh_steelers && json[i]['Pittsburgh Steelers'] <= h_pittsburgh_steelers && json[i]['San Francisco 49ers'] >= l_san_francisco_49ers &&  json[i]['San Francisco 49ers'] <= h_san_francisco_49ers)
+				{
+					var temp_arr = [];
+					temp_arr.push(json[i]['x'])
+					temp_arr.push(json[i]['y'])
+					temp_arr.push(json[i]['Atlanta Falcons'])
+					temp_arr.push(json[i]['Baltimore Ravens'])
+					temp_arr.push(json[i]['Buffalo Bills'])
+					temp_arr.push(json[i]['Green Bay Packers'])
+					temp_arr.push(json[i]['New England Patriots'])
+					temp_arr.push(json[i]['New Orleans Saints'])
+					temp_arr.push(json[i]['New York Jets'])
+					temp_arr.push(json[i]['Pittsburgh Steelers'])
+					temp_arr.push(json[i]['San Francisco 49ers'])
+					main_arr.push(temp_arr);
+					temp_arr=[];
+				}
+				
+
+			}
+
+			console.log(main_arr);
+			var end =  Date.now();
+			console.log(`Execution time: ${end - start} ms`);
+
+			console.log("Close")
+			var after_processed_data = [main_arr];
+
+			load_chart(after_processed_data)
+		});
+		
+	});
+</script>
+
+   </body>
+</html>

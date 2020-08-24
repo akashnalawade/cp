@@ -1,0 +1,883 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Clearprism</title>
+    <!-- plugins:css -->
+    <link rel="stylesheet" href="vendors/simple-line-icons/css/simple-line-icons.css">
+
+    <!-- <link rel="stylesheet" href="vendors/flag-icon-css/css/flag-icon.min.css"> -->
+    <!-- <link rel="stylesheet" href="vendors/css/vendor.bundle.base.css"> -->
+    <!-- endinject -->
+    <!-- Plugin css for this page -->
+    <!-- <link rel="stylesheet" href="vendors/chartist/chartist.min.css"> -->
+    <!-- End Plugin css for this page -->
+    <!-- inject:css -->
+    <!-- endinject -->
+    <!-- Layout styles -->
+    <link rel="stylesheet" href="css/style.css">
+    <!-- End layout styles -->
+    <link rel="shortcut icon" href="images/logo.png">
+
+
+    <!-- Added JQuery and rangeslider -->
+
+    <!-- <link rel="stylesheet" href="css/ion.rangeSlider.css"/> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ion-rangeslider/2.3.1/css/ion.rangeSlider.min.css"/>
+    
+    
+    <!--jQuery-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <!--Plugin JavaScript file-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ion-rangeslider/2.3.1/js/ion.rangeSlider.min.js"></script>
+
+    <style type="text/css">
+        
+        .team-img-xs{
+            width: 50px;
+            height: 50px;
+        }
+        .team-row{
+            margin-bottom: 4px;
+            margin-top: 2px;
+            padding: 4px 0px;
+        }
+
+        /*Tooltip style*/
+
+        .custom_tooltip {
+          position: relative;
+          display: inline-block;
+          /*border-bottom: 1px dotted black;*/
+        }
+
+        .custom_tooltip .tooltiptext {
+          visibility: hidden;
+          width: 120px;
+          background-color: #555;
+          color: #fff;
+          text-align: center;
+          border-radius: 6px;
+          padding: 5px 0;
+          position: absolute;
+          z-index: 1;
+          bottom: 125%;
+          left: 50%;
+          margin-left: -20px;
+          opacity: 0;
+          transition: opacity 0.3s;
+        }
+
+        .custom_tooltip .tooltiptext::after {
+          content: "";
+          position: absolute;
+          top: 100%;
+          left: 50%;
+          margin-left: -5px;
+          border-width: 5px;
+          border-style: solid;
+          border-color: #555 transparent transparent transparent;
+        }
+
+        .custom_tooltip:hover .tooltiptext {
+          visibility: visible;
+          opacity: 1;
+        }
+
+        /*style for mean and variance*/
+
+        .comman_fonts{
+            font-weight: 900;
+            margin-top: 15px;
+        }
+
+
+        /*#################################sidebar style #######################################*/
+
+             @import url(https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css);
+            }
+            @import url(https://fonts.googleapis.com/css?family=Titillium+Web:300);
+            .fa-2x {
+            font-size: 2em;
+            }
+            .fa {
+            position: relative;
+            display: table-cell;
+            width: 60px;
+            height: 36px;
+            text-align: center;
+            vertical-align: middle;
+            font-size:20px;
+            }
+
+
+            .main-menu:hover,nav.main-menu.expanded {
+            width:250px;
+            overflow:visible;
+            }
+
+            .main-menu {
+            background:#fff;
+            border-right:1px solid #e5e5e5;
+            position:absolute;
+            top:60px;
+            bottom:0;
+            height:100%;
+            left:0;
+            width:60px;
+            overflow:hidden;
+            -webkit-transition:width .05s linear;
+            transition:width .05s linear;
+            -webkit-transform:translateZ(0) scale(1,1);
+            z-index:1000;
+            }
+
+            .main-menu>ul {
+            margin:7px 0;
+            }
+
+            .main-menu li {
+            position:relative;
+            display:block;
+            width:250px;
+            }
+
+            .main-menu li>a {
+            position:relative;
+            display:table;
+            border-collapse:collapse;
+            border-spacing:0;
+            color:#999;
+             font-family: arial;
+            font-size: 14px;
+            text-decoration:none;
+            -webkit-transform:translateZ(0) scale(1,1);
+            -webkit-transition:all .1s linear;
+            transition:all .1s linear;
+              
+            }
+
+            .main-menu .nav-icon {
+            position:relative;
+            display:table-cell;
+            width:60px;
+            height:36px;
+            text-align:center;
+            vertical-align:middle;
+            font-size:18px;
+            }
+
+            .main-menu .nav-text {
+            position:relative;
+            display:table-cell;
+            vertical-align:middle;
+            width:190px;
+              font-family: 'Titillium Web', sans-serif;
+            }
+
+            .main-menu>ul.logout {
+            position:absolute;
+            left:0;
+            bottom:0;
+            }
+
+            .no-touch .scrollable.hover {
+            overflow-y:hidden;
+            }
+
+            .no-touch .scrollable.hover:hover {
+            overflow-y:auto;
+            overflow:visible;
+            }
+
+            a:hover,a:focus {
+            text-decoration:none;
+            }
+
+            nav {
+            -webkit-user-select:none;
+            -moz-user-select:none;
+            -ms-user-select:none;
+            -o-user-select:none;
+            user-select:none;
+            }
+
+            nav ul,nav li {
+            outline:0;
+            margin:0;
+            padding:0;
+            }
+            .main-menu li:hover>a,nav.main-menu li.active>a,.dropdown-menu>li>a:hover,.dropdown-menu>li>a:focus,.dropdown-menu>.active>a,.dropdown-menu>.active>a:hover,.dropdown-menu>.active>a:focus,.no-touch .dashboard-page nav.dashboard-menu ul li:hover a,.dashboard-page nav.dashboard-menu ul li.active a {
+            color:#fff;
+            background-color:#5fa2db;
+            }
+            .area {
+            float: left;
+            background: #e2e2e2;
+            width: 100%;
+            height: 100%;
+            }
+            @font-face {
+              font-family: 'Titillium Web';
+              font-style: normal;
+              font-weight: 300;
+              src: local('Titillium WebLight'), local('TitilliumWeb-Light'), url(http://themes.googleusercontent.com/static/fonts/titilliumweb/v2/anMUvcNT0H1YN4FII8wpr24bNCNEoFTpS2BTjF6FB5E.woff) format('woff');
+            }
+
+    </style>
+  </head>
+    <body>
+        <div class="container-scroller">
+            <nav class="navbar default-layout-navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
+                <div class="navbar-brand-wrapper d-flex align-items-center" style="box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.11)">
+                    <a class="navbar-brand brand-logo" href="index.html">
+                        <img src="images/logo.png" alt="logo" class="logo-dark" />
+                    </a>
+                    <a class="navbar-brand brand-logo-mini" href="index.html"><img src="images/logo.png" alt="logo" /></a>
+                </div>
+                <div class="navbar-menu-wrapper d-flex align-items-center flex-grow-1">
+                    <h5 class="mb-0 font-weight-medium d-none d-lg-flex">Welcome to Endeavor Dashboard</h5>
+                    <ul class="navbar-nav navbar-nav-right ml-auto">
+                        <form class="search-form d-none d-md-block" action="#">
+                            <i class="icon-magnifier"></i>
+                            <input type="search" class="form-control" placeholder="Search Here" title="Search here">
+                        </form>
+                        <li class="nav-item"><a href="#" class="nav-link"><i class="icon-chart"></i></a></li>
+                        <li class="nav-item"><a href="#" class="nav-link"><i class="icon-chart"></i></a></li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link count-indicator message-dropdown" id="messageDropdown" href="#" data-toggle="dropdown" aria-expanded="false">
+                                <i class="icon-speech"></i>
+                                <span class="count">7</span>
+                            </a>
+                        </li>
+                        <li class="nav-item dropdown language-dropdown d-none d-sm-flex align-items-center">
+                            <a class="nav-link d-flex align-items-center dropdown-toggle" id="LanguageDropdown" href="#" data-toggle="dropdown" aria-expanded="false">
+                                <div class="d-inline-flex mr-3">
+                                    <i class="flag-icon flag-icon-us"></i>
+                                </div>
+                                <span class="profile-text font-weight-normal">Projects</span>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-left navbar-dropdown py-2" aria-labelledby="LanguageDropdown">
+                                <a class="dropdown-item">
+                                  <i class="flag-icon flag-icon-us"></i> Apps </a>
+                                <a class="dropdown-item">
+                                  <i class="flag-icon flag-icon-fr"></i> Charts </a>
+                                <a class="dropdown-item">
+                                  <i class="flag-icon flag-icon-ae"></i> Docs </a>
+                                <a class="dropdown-item">
+                                  <i class="flag-icon flag-icon-ru"></i> Projects </a>
+                            </div>
+                        </li>
+                        <li class="nav-item dropdown d-none d-xl-inline-flex user-dropdown">
+                            <a class="nav-link dropdown-toggle" id="UserDropdown" href="#" data-toggle="dropdown" aria-expanded="false">
+                                <img class="img-xs rounded-circle ml-2" src="images/user.png" alt="Profile image"><span class="font-weight-normal"> Akash Nalawade</span>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="UserDropdown">
+                                <div class="dropdown-header text-center">
+                                    <img class="img-md rounded-circle" src="images/user_inside_1.png" alt="Profile image">
+                                    <p class="mb-1 mt-3">Akash Nalawade</p>
+                                    <p class="font-weight-light text-muted mb-0">akash.nalawade@ellicium.com</p>
+                                </div>
+                                <a class="dropdown-item"><i class="dropdown-item-icon icon-user text-primary"></i> My Profile <span class="badge badge-pill badge-danger">1</span></a>
+                                <a class="dropdown-item"><i class="dropdown-item-icon icon-speech text-primary"></i> Messages</a>
+                                <a class="dropdown-item"><i class="dropdown-item-icon icon-energy text-primary"></i> Activity</a>
+                                <a class="dropdown-item"><i class="dropdown-item-icon icon-question text-primary"></i> FAQ</a>
+                                <a href="login.html" class="dropdown-item"><i class="dropdown-item-icon icon-power text-primary"></i>Sign Out</a>
+                            </div>
+                        </li>
+                    </ul>
+                    <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
+                        <span class="icon-menu"></span>
+                    </button>
+                </div>
+            </nav>
+
+            <nav class="main-menu">
+                <ul>
+                    <li>
+                       <div class="row team-row">
+                            <div class="col-3 custom_tooltip">
+                                <img class="team-img-xs rounded-circle" src="images/teams/atlanta_falcons.png" alt="Team Logo">
+                                <span class="tooltiptext">Atlanta Falcons</span>
+                            </div>
+                            <div class="col-9" style="max-width: 65% !important;">
+                                <input type="text" class="js-range-slider" id="atlanta_falcons" name="my_range" value="" />
+                            </div>
+                        </div>
+                      
+                    </li>
+                    <li>
+                       <div class="row team-row">
+                            <div class="col-3 custom_tooltip">
+                                <img class="team-img-xs rounded-circle" src="images/teams/baltimore_ravens.png" alt="Team Logo">
+                                <span class="tooltiptext">Baltimore Ravens</span>
+                            </div>
+                            <div class="col-9" style="max-width: 65% !important;">
+                                <input type="text" class="js-range-slider" id="baltimore_ravens" name="my_range" value="" />
+                            </div>
+                        </div>
+                        
+                    </li>
+                    <li>
+                        <div class="row team-row">
+                            <div class="col-3 custom_tooltip">
+                                <img class="team-img-xs rounded-circle" src="images/teams/buffalo_bills.png" alt="Team Logo">
+                                <span class="tooltiptext">Buffalo Bills</span>
+                            </div>
+                            <div class="col-9" style="max-width: 65% !important;">
+                                <input type="text" class="js-range-slider" id="buffalo_bills" name="my_range" value="" />
+                            </div>
+                        </div>
+                        
+                    </li>
+                    <li>
+                        <div class="row team-row">
+                            <div class="col-3 custom_tooltip">
+                                <img class="team-img-xs rounded-circle" src="images/teams/green_bay_packers.png" alt="Team Logo">
+                                <span class="tooltiptext">Green Bay Packers</span>
+                            </div>
+                            <div class="col-9" style="max-width: 65% !important;">
+                                <input type="text" class="js-range-slider" id="green_bay_packers" name="my_range" value="" />
+                            </div>
+                        </div>
+                       
+                    </li>
+                    <li>
+                        <div class="row team-row">
+                            <div class="col-3 custom_tooltip">
+                                <img class="team-img-xs rounded-circle" src="images/teams/new_england_patriots.png" alt="Team Logo">
+                                <span class="tooltiptext">New England Patriots</span>
+                            </div>
+                            <div class="col-9" style="max-width: 65% !important;">
+                                <input type="text" class="js-range-slider" id="new_england_patriots" name="my_range" value="" />
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="row team-row">
+                            <div class="col-3 custom_tooltip">
+                                <img class="team-img-xs rounded-circle" src="images/teams/new_orleans_saints.png" alt="Team Logo">
+                                <span class="tooltiptext">New Orleans Saints</span>
+                            </div>
+                            <div class="col-9" style="max-width: 65% !important;">
+                                <input type="text" class="js-range-slider" id="new_orleans_saints" name="my_range" value="" />
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                       <div class="row team-row">
+                            <div class="col-3 custom_tooltip">
+                                <img class="team-img-xs rounded-circle" src="images/teams/ny_jets.png" alt="Team Logo">
+                                <span class="tooltiptext">New York Jets</span>
+                            </div>
+                            <div class="col-9" style="max-width: 65% !important;">
+                                <input type="text" class="js-range-slider" id="ny_jets" name="my_range" value="" />
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                       <div class="row team-row">
+                            <div class="col-3 custom_tooltip">
+                                <img class="team-img-xs rounded-circle" src="images/teams/pittsburgh_steelers.png" alt="Team Logo">
+                                <span class="tooltiptext">Pittsburgh Steelers</span>
+                            </div>
+                            <div class="col-9" style="max-width: 65% !important;">
+                                <input type="text" class="js-range-slider" id="pittsburgh_steelers" name="my_range" value="" />
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="row team-row">
+                            <div class="col-3 custom_tooltip">
+                                <img class="team-img-xs rounded-circle" src="images/teams/san_francisco_49ers.png" alt="Team Logo">
+                                <span class="tooltiptext">San Francisco 49ers</span>
+                            </div>
+                            <div class="col-9" style="max-width: 65% !important;">
+                                <input type="text" class="js-range-slider" id="san_francisco_49ers" name="my_range" value="" />
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </nav>
+            <!-- partial -->
+            <div class="container-fluid page-body-wrapper area">
+                <div class="main-panel" style="width: 100% !important;">
+                    <div class="content-wrapper" style="padding: 0.8rem 1rem 0 !important;">
+                        
+                        <div class="row" style="margin-top: 60px !important;">
+                           <div class="col-1">
+                           </div>
+                            <div class="col-11">
+                                <div class="card card-secondary">
+                                    <div class="card-body align-items-center" style="padding: 0.1rem 1rem !important;">
+                                        <!-- <p class="mb-lg-0">Like what you see? Check out our premium version for more.</p> -->
+                                        <div class="row" >
+                                            <div class="col-5">
+                                                <div class="row team-row">
+                                                    <div class="col-3">
+                                                        <!-- <img class="team-img-xs rounded-circle" src="images/teams/atlanta_falcons.png" alt="Team Logo"> -->
+                                                        <h4 class="comman_fonts">Mean</h4>
+                                                        
+                                                    </div>
+                                                    <div class="col-8">
+                                                        <input type="text" class="js-range-slider-mean" id="mean" name="my_range" value="" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-5">
+                                                <div class="row team-row">
+                                                    <div class="col-1">
+                                                    </div>
+                                                    <div class="col-3">
+                                                        <h4 class="comman_fonts">Variance</h4>
+                                                    </div>
+                                                    <div class="col-8">
+                                                        <input type="text" class="js-range-slider-variance" id="variance" name="my_range" value="" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-2">
+                                               <button type="button" id="submitRange" class="btn btn-inverse-info btn-fw" style="margin-top:10px;">Submit</button>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="grid-margin stretch-card" style="height: 490px !important;margin-top: 10px;">
+
+                                    <div class="card" style="height: 490px !important">
+                                        <div id="chart_container" style="height: 490px !important"></div>
+                                      <!--   <div class="card-body performane-indicator-card" style="height: 100%">
+                                            <div id="chart_container" style="height: 100%"></div>
+                                        </div> -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+      
+        </div>
+
+
+    <script type="text/javascript">
+        $(".js-range-slider").ionRangeSlider({
+            // skin: "big",
+            // skin: "modern",
+            // skin: "flat",
+            skin:"sharp",
+            // skin: "round",
+
+            type: "double",
+            min: 0,
+            max: 1,
+            from: 0,
+            to: 1,
+            step: 0.1,
+            grid: false,             // show/hide grid
+            force_edges: false,     // force UI in the box
+            hide_min_max: true,    // show/hide MIN and MAX labels
+            hide_from_to: false,    // show/hide FROM and TO labels
+            block: false            // block instance from changing
+        });
+
+
+        $("#mean").ionRangeSlider({
+            // skin: "big",
+            // skin: "modern",
+            // skin: "flat",
+            skin:"sharp",
+            // skin: "round",
+
+            type: "double",
+            min: 0,
+            max: 1,
+            from: 0,
+            to: 1,
+            step: 0.1,
+            grid: false,             // show/hide grid
+            force_edges: false,     // force UI in the box
+            hide_min_max: true,    // show/hide MIN and MAX labels
+            hide_from_to: false,    // show/hide FROM and TO labels
+            block: false            // block instance from changing
+        });
+
+        $("#variance").ionRangeSlider({
+            // skin: "big",
+            // skin: "modern",
+            // skin: "flat",
+            skin:"sharp",
+            // skin: "round",
+
+            type: "double",
+            min: 0,
+            max: 20,
+            from: 0,
+            to: 20,
+            step: 0.1,
+            grid: false,             // show/hide grid
+            force_edges: false,     // force UI in the box
+            hide_min_max: true,    // show/hide MIN and MAX labels
+            hide_from_to: false,    // show/hide FROM and TO labels
+            block: false            // block instance from changing
+        });
+    </script>
+
+    <script src="vendors/js/vendor.bundle.base.js"></script>
+   
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts-gl/dist/echarts-gl.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts-stat/dist/ecStat.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/extension/dataTool.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/map/js/china.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/map/js/world.js"></script>
+    
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/extension/bmap.min.js"></script>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+
+    <script type="text/javascript">
+        
+        // var processed_data = [
+        //         [[0.44094364,11.96963353,0, 0, 0, 0, 0, 0, 0, 0, 1], 
+        //         [0.362159394,12.35691498,0, 0, 0, 0, 0, 0, 0, 0.1, 0.9 ], 
+        //         [0.3009933440,12.74419643, 0,0, 0, 0, 0, 0, 0, 0.2, 0.8  ],
+        //         [0.25744549,13.13147789,0, 0, 0, 0, 0, 0, 0, 0.3, 0.7,],
+        //         [0.23151583,13.51875934,0, 0, 0, 0, 0, 0, 0, 0.4, 0.6], 
+        //         [0.223204366,13.9060408,0, 0, 0, 0, 0, 0, 0, 0.5, 0.5], 
+        //         [0.232511098,14.29332225,0, 0, 0, 0, 0, 0, 0, 0.6, 0.4 ], 
+        //         [0.259436024,14.6806037,0, 0, 0, 0, 0, 0, 0, 0.7, 0.3 ], 
+        //         [0.303979146,15.06788516,0, 0, 0, 0, 0, 0, 0, 0.8, 0.2  ], 
+        //         [0.366140464,15.45516661,0, 0, 0, 0, 0, 0, 0, 0.9, 0.1]]
+        //         ];
+
+        var dom = document.getElementById("chart_container");
+        var myChart = echarts.init(dom);
+
+        function load_chart(chart_data)
+        {
+
+            dom = document.getElementById("chart_container");
+            myChart = echarts.init(dom);
+            var app = {};
+            option = null;
+            var data = chart_data;
+            option = {
+                // backgroundColor: new echarts.graphic.RadialGradient(0.3, 0.3, 0.8, [{
+                //     offset: 0,
+                //     color: '#f7f8fa'
+                // }, {
+                //     offset: 1,
+                //     color: '#cdd0d5'
+                // }]),
+
+                backgroundColor:"#fff",
+                title: {
+                    text: 'Scorecard'
+                },
+                legend: {
+                    right: 10,
+                    data: ['1990', '2015']
+                },
+                xAxis: {
+                    name: "Mean",
+                    splitLine: {
+                        lineStyle: {
+                            type: 'dashed'
+                        }
+                    }
+                },
+                yAxis: {
+                    name: "Variance",
+                    splitLine: {
+                        lineStyle: {
+                            type: 'dashed'
+                        }
+                    },
+                    scale: true
+                },
+
+                tooltip: {
+                    padding: 10,
+                    backgroundColor: '#222',
+                    borderColor: '#777',
+                    borderWidth: 1,
+                    // showContent : false,
+                    formatter: function (obj) {
+                        var value = obj.value;
+                        // console.log("obj");
+                        // console.log(obj);
+                        return '<div style="border-bottom: 1px solid rgba(255,255,255,.3); font-size: 18px;padding-bottom: 7px;margin-bottom: 7px">'
+                            + 'Mean: ' + value[0].toFixed(2) + '   '+ ',  Variance: '+ value[1].toFixed(2)
+                            + '</div>'
+                            +'Atlanta Falcons ：'+ value[2]*100 +' %' +'<br>'
+                            +'Baltimore Ravens ：'+ value[3]*100 +' %'  + '<br>'
+                            +'Buffalo Bills ：'+ value[4]*100 +' %'  +'<br>'
+                            +'Green Bay Packers ：'+ value[5]*100 +' %'  + '<br>'
+                            +'New England Patriots ：'+ value[6]*100 +' %'  +'<br>'
+                            +'New Orleans Saints ：'+ value[7]*100 +' %'  + '<br>'
+                            +'New York Jets ：'+ value[8]*100 +' %'  +'<br>'
+                            +'Pittsburgh Steelers ：'+ value[9]*100 +' %'  + '<br>'
+                            +'San Francisco 49ers ：'+ value[10]*100 +' %'  +'<br>'
+                    }
+                },
+
+                dataZoom: [
+                    {   // This dataZoom component controls x-axis by dafault
+                        type: 'slider', // this dataZoom component is dataZoom component of slider
+                        start: 0,      // the left is located at 10%
+                        end: 70000         // the right is located at 60%
+                    },
+                    {   // This dataZoom component controls x-axis by dafault
+                        type: 'inside', // this dataZoom component is dataZoom component of inside
+                        start: 0,      // the left is located at 10%
+                        end: 70000         // the right is located at 60%
+                    },
+                    {
+                        type: 'slider',
+                        yAxisIndex: 0,
+                        start: 0,
+                        end: 85
+                    },
+                    {
+                        type: 'inside',
+                        yAxisIndex: 0,
+                        start: 0,
+                        end: 85
+                    }
+                ],
+                series: [{
+                    name: '0',
+                    data: data[0],
+                    type: 'scatter',
+                    symbolSize: function (data) {
+                        return 5;
+
+                    },
+                    itemStyle: {
+                        shadowBlur: 10,
+                        shadowColor: 'rgba(120, 36, 50, 0.5)',
+                        shadowOffsetY: 5,
+                        color: new echarts.graphic.RadialGradient(0.4, 0.3, 1, [{
+                            offset: 0,
+                            // color: 'rgb(251, 118, 123)' #4d4dff #8080ff
+                            color: '#8080ff'
+
+                        }, {
+                            offset: 1,
+                            // color: 'rgb(204, 46, 72)' #8080ff #b3b3ff
+                            color: '#b3b3ff' 
+                        }])
+                    }
+                }
+                ]
+            };;
+            if (option && typeof option === "object") {
+                myChart.setOption(option, true);
+            }
+
+        }
+
+        $(document).ready(function(){
+            $.getJSON("https://raw.githubusercontent.com/akashnalawade/statFiles/master/dataToInsert.json", function(json){
+                    var start =  Date.now();
+                    total_records = json.length;
+                    console.log(total_records);
+                    var main_arr = [];
+                    for(var i =0;i<total_records;i++)
+                    {
+                        var temp_arr = [];
+                        temp_arr.push(json[i]['x'])
+                        temp_arr.push(json[i]['y'])
+                        temp_arr.push(json[i]['Atlanta Falcons'])
+                        temp_arr.push(json[i]['Baltimore Ravens'])
+                        temp_arr.push(json[i]['Buffalo Bills'])
+                        temp_arr.push(json[i]['Green Bay Packers'])
+                        temp_arr.push(json[i]['New England Patriots'])
+                        temp_arr.push(json[i]['New Orleans Saints'])
+                        temp_arr.push(json[i]['New York Jets'])
+                        temp_arr.push(json[i]['Pittsburgh Steelers'])
+                        temp_arr.push(json[i]['San Francisco 49ers'])
+                        main_arr.push(temp_arr);
+                        temp_arr=[];
+                    }
+
+                    console.log(main_arr);
+                    var end =  Date.now();
+                    console.log(`Execution time: ${end - start} ms`);
+
+                    console.log("Close")
+                    var before_processed_data = [main_arr];
+
+                    load_chart(before_processed_data)
+
+            })
+
+
+        });
+
+        // load_chart(processed_data)
+
+        $('#submitRange').click(function() {
+            var start =  Date.now();
+            console.log("Clicked")
+            
+
+
+            var l_mean ;
+            var l_variance;
+
+            var l_atlanta_falcons;
+            var l_baltimore_ravens;
+            var l_buffalo_bills;
+            var l_green_bay_packers;
+            var l_new_england_patriots;
+            var l_new_orleans_saints;
+            var l_new_york_jets;
+            var l_pittsburgh_steelers;
+            var l_san_francisco_49ers;
+
+            var h_mean ;
+            var h_variance;
+
+            var h_atlanta_falcons;
+            var h_baltimore_ravens;
+            var h_buffalo_bills;
+            var h_green_bay_packers;
+            var h_new_england_patriots;
+            var h_new_orleans_saints;
+            var h_new_york_jets;
+            var h_pittsburgh_steelers;
+            var h_san_francisco_49ers;
+
+
+            var mean = $("#mean").val().split(";");
+            var variance = $("#variance").val().split(";");
+            var atlanta_falcons = $("#atlanta_falcons").val().split(";");
+            var baltimore_ravens = $("#baltimore_ravens").val().split(";");
+            var buffalo_bills = $("#buffalo_bills").val().split(";");
+            var green_bay_packers = $("#green_bay_packers").val().split(";");
+            var new_england_patriots = $("#new_england_patriots").val().split(";");
+            var new_orleans_saints = $("#new_orleans_saints").val().split(";");
+            var new_york_jets = $("#ny_jets").val().split(";");
+            var pittsburgh_steelers = $("#pittsburgh_steelers").val().split(";");
+            var san_francisco_49ers = $("#san_francisco_49ers").val().split(";");
+
+
+            l_mean = parseFloat(mean[0]);
+            h_mean = parseFloat(mean[1]);
+
+            l_variance = parseFloat(variance[0]);
+            h_variance = parseFloat(variance[1]);
+
+            l_atlanta_falcons = parseFloat(atlanta_falcons[0]);
+            h_atlanta_falcons = parseFloat(atlanta_falcons[1]);
+
+            l_baltimore_ravens = parseFloat(baltimore_ravens[0]);
+            h_baltimore_ravens = parseFloat(baltimore_ravens[1]);
+
+            l_buffalo_bills = parseFloat(buffalo_bills[0]);
+            h_buffalo_bills = parseFloat(buffalo_bills[1]);
+
+            l_green_bay_packers = parseFloat(green_bay_packers[0]);
+            h_green_bay_packers = parseFloat(green_bay_packers[1]);
+
+            l_new_england_patriots = parseFloat(new_england_patriots[0]);
+            h_new_england_patriots = parseFloat(new_england_patriots[1]);
+
+            l_new_orleans_saints = parseFloat(new_orleans_saints[0]);
+            h_new_orleans_saints = parseFloat(new_orleans_saints[1]);
+
+            l_new_york_jets = parseFloat(new_york_jets[0]);
+            h_new_york_jets = parseFloat(new_york_jets[1]);
+
+            l_pittsburgh_steelers = parseFloat(pittsburgh_steelers[0]);
+            h_pittsburgh_steelers = parseFloat(pittsburgh_steelers[1]);
+
+            l_san_francisco_49ers = parseFloat(san_francisco_49ers[0]);
+            h_san_francisco_49ers = parseFloat(san_francisco_49ers[1]);
+
+            console.log(h_variance);
+            console.log(typeof(h_variance));
+            console.log(h_variance);
+            // l_mean = 0.2;
+            // l_variance = 1;
+        
+            // l_atlanta_falcons = 0;
+            // l_baltimore_ravens = 0;
+            // l_buffalo_bills = 0;
+            // l_green_bay_packers = 0; 
+            // l_new_england_patriots = 0; 
+            // l_new_orleans_saints = 0 ;
+            // l_new_york_jets = 0;
+            // l_pittsburgh_steelers = 0;
+            // l_san_francisco_49ers = 0;
+
+
+            // h_mean = 0.8;
+            // h_variance = 15;
+        
+            // h_atlanta_falcons =1;
+            // h_baltimore_ravens = 1;
+            // h_buffalo_bills = 1;
+            // h_green_bay_packers = 1; 
+            // h_new_england_patriots = 1; 
+            // h_new_orleans_saints = 1 ;
+            // h_new_york_jets = 1;
+            // h_pittsburgh_steelers = 1;
+            // h_san_francisco_49ers = 1;
+            
+
+            // clear the previous chart
+            myChart.clear();
+            // $.ajaxSetup({ cache:false });
+            $.getJSON("https://raw.githubusercontent.com/akashnalawade/statFiles/master/dataToInsert.json", function(json){
+                // console.log(json);
+                // console.log(json[0]);
+                total_records = json.length;
+                console.log(total_records);
+                var main_arr = [];
+                for(var i =0;i<total_records;i++)
+                {
+
+                    if(json[i]['x'] >= l_mean && json[i]['x'] <= h_mean  && json[i]['y'] >= l_variance && json[i]['y'] <= h_variance  &&  json[i]['Atlanta Falcons'] >= l_atlanta_falcons && json[i]['Atlanta Falcons'] <= h_atlanta_falcons &&  json[i]['Baltimore Ravens'] >= l_baltimore_ravens && json[i]['Baltimore Ravens'] <= h_baltimore_ravens && json[i]['Buffalo Bills'] >= l_buffalo_bills && json[i]['Buffalo Bills'] <= h_buffalo_bills &&  json[i]['Green Bay Packers'] >= l_green_bay_packers && json[i]['Green Bay Packers'] <= h_green_bay_packers && json[i]['New England Patriots'] >= l_new_england_patriots && json[i]['New England Patriots'] <= h_new_england_patriots && json[i]['New Orleans Saints'] >= l_new_orleans_saints && json[i]['New Orleans Saints'] <= h_new_orleans_saints &&   json[i]['New York Jets'] >= l_new_york_jets && json[i]['New York Jets'] <= h_new_york_jets && json[i]['Pittsburgh Steelers'] >= l_pittsburgh_steelers && json[i]['Pittsburgh Steelers'] <= h_pittsburgh_steelers && json[i]['San Francisco 49ers'] >= l_san_francisco_49ers &&  json[i]['San Francisco 49ers'] <= h_san_francisco_49ers)
+                    {
+                        var temp_arr = [];
+                        temp_arr.push(json[i]['x'])
+                        temp_arr.push(json[i]['y'])
+                        temp_arr.push(json[i]['Atlanta Falcons'])
+                        temp_arr.push(json[i]['Baltimore Ravens'])
+                        temp_arr.push(json[i]['Buffalo Bills'])
+                        temp_arr.push(json[i]['Green Bay Packers'])
+                        temp_arr.push(json[i]['New England Patriots'])
+                        temp_arr.push(json[i]['New Orleans Saints'])
+                        temp_arr.push(json[i]['New York Jets'])
+                        temp_arr.push(json[i]['Pittsburgh Steelers'])
+                        temp_arr.push(json[i]['San Francisco 49ers'])
+                        main_arr.push(temp_arr);
+                        temp_arr=[];
+                    }
+                }
+
+                console.log(main_arr);
+                var end =  Date.now();
+                console.log(`Execution time: ${end - start} ms`);
+
+                console.log("Close")
+                var after_processed_data = [main_arr];
+
+                load_chart(after_processed_data)
+            });
+            
+        });    
+    </script>
+  
+
+  </body>
+</html>
